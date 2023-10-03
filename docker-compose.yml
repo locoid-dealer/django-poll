@@ -1,0 +1,11 @@
+# Ref. https://qiita.com/k4ssyi/items/b8d1355fed43b526aee1
+
+version: "3.8"
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app
+    command: "python3 manage.py runserver 0.0.0.0:8000"
