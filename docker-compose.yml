@@ -1,7 +1,6 @@
-# Ref. https://qiita.com/k4ssyi/items/b8d1355fed43b526aee1
-
 version: "3.8"
 services:
+  # Ref. https://qiita.com/k4ssyi/items/b8d1355fed43b526aee1
   django:
     build: .
     ports:
@@ -9,3 +8,14 @@ services:
     volumes:
       - ./src:/app
     command: "python3 manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres
+  # https://qiita.com/keita_gawahara/items/59a7db6046016046f0dc
+  # https://qiita.com/zaburo/items/7ab51a7a4d9e1b2d1ec4
+  # https://hub.docker.com/_/postgres
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
